@@ -1,2 +1,2 @@
-# PA_5_ReciclaJ-
+# TCC
 Projeto aplicado voltado para sustentabilidade
