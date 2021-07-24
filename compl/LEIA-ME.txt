@@ -1,0 +1,31 @@
+***********Instruções de uso das tecnologias********
+
+Resumo
+Tanto o frontend quanto o backend, foram desenvolvidos via VSCode e Insomnia Designer.
+Para inicialização do banco SQLite foi utilizado o query builder Knex para integração do mesmo com o software Insomnia (software de debug e visualização do funcionamento das API's), a pasta de banco de dados encontra-se incluso ao backend, pois foi integrada ao desenvolvimento Node, sendo separados por pastas com base em cada função.
+No frontend, foi utilizada a abordagem SPA para uma maior responsividade por parte das informações em tela.
+
+Gerenciador de pacotes utilizado
+Chocolatey - Solução de gerenciamento de software para criação de pacotes usando as configurações do sistema.
+
+Framework utilizado
+Express - Miniframework para apoio na criação de de projetos utilizando json
+
+******Instruções de instalação das tecnologias******
+Instala-se primeiro o gerenciador de pacotes abaixo(em caso de ambiente windows), para nos auxiliar na instalação do node.js.
+Chocolatey
+Instruções de instalção em https://chocolatey.org/install.
+
+Obs.: Para ambientes macOs utiliza-se o gerenciador Homebrew, informações em https://brew.sh/index_pt-br.
+
+Node.js
+Após instalação do mesmo, efetuar a instalçao do node.js (versão LTS) através do chocolatey com o powershell (cinst nodejs-lts). Para a criação do projeto, crie uma pasta e junto ao powershell dê o comando npm init -y para que o pacote json seja criado.
+
+Express
+Junto ao VSCode, após ter já criado sua pasta backend, abra a mesma para edições e após ter aberto o terminal do VSCode dê o comando 'npm install express', para que as depedências do mesmo sejam inclusas no projeto.(porta utilizada -> localhost:3333)
+
+React
+O mesmo foi executado a partir de um app externo, criando uma pasta dentro do mesmo projeto e o executando através do powershell pelo comando "npx create-react-app". Para iniciá-lo dentro do VSCode, após abrir a pasta frontend criada, através do terminal foi imbutido o comando "npm start". Porta utilizada -> localhost:3000
+
+Insomnia 
+Instalado através do site http://www.insomnia.rest, após a instalação cria-se recursos dentro do mesmo, simulando o endereço das páginas a serem utilizadas, e verificando se o backend está conectado corretamente.
