@@ -1,12 +1,11 @@
+const { default: knex } = require("knex");
 
 exports.up = function(knex) {
-    return knex.schema.createTable('incidents', function (table){
+    return knex.schema.createTable('schedule', function (table){
         table.increments();
 
         table.string('title').notNullable();
-        table.string('description').notNullable();
-        table.string('protocol').notNullable();
-        table.decimal('value').notNullable();
+        table.string('date').notNullable();
         
         table.string('users_cpf').notNullable();
 
@@ -15,6 +14,6 @@ exports.up = function(knex) {
   };
   
   exports.down = function(knex) {
-      return knex.schema.dropTable('incidents');
+      return knex.schema.dropTable('schedule');
   };
   

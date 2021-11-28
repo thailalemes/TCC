@@ -9,10 +9,15 @@ module.exports = {
         .select ('name')
         .first();
 
-        if(!user){
-            return response.status(400).json({ error: 'No user found '});
+        const user_adm = await connection('users-adm')
+        .where('cpf', cpf)
+        .select ('name')
+        .first();
+
+        if(!user || user_adm){
+            return response.status(400).json({ error: 'No user found with this CPF'});
         }
 
-        return response.json(user);
+        return response.json(user || user_adm);
     }
 }
