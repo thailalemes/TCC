@@ -24,11 +24,12 @@
 .register-container .content section{
     width: 100%;
     max-width: 380px;
+    margin-top: -42px;
 }
 
 .register-container .content section img{
     margin-left: auto;
-    margin-bottom: 40px;
+    margin-bottom: -26px;
 }
 
 .register-container .content section h1{

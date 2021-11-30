@@ -3,16 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/react-fontawesome": "^0.1.15",
+    "@react-google-maps/api": "^2.7.0",
+    "@react-leaflet/core": ">=1.0.0 <1.1.0 || ^1.1.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "@turf/random": "^6.5.0",
     "axios": "^0.19.2",
+    "babel": "^6.23.0",
     "font-awesome": "^4.7.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "google-maps-react": "^2.0.6",
+    "immutable": "^4.0.0",
+    "leaflet": "^1.7.1",
+    "pdfmake": "^0.2.4",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-google-maps": "^9.4.5",
     "react-icons": "^3.10.0",
+    "react-leaflet": ">=3.1.0 <3.2.0 || ^3.2.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "^4.0.3",
+    "react-select": "^5.2.1",
+    "turf": "^3.0.14",
+    "uuid": "^3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -23,16 +37,13 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@types/react-leaflet": "^2.8.2",
+    "@types/react-select": "^5.0.1"
   }
 }
