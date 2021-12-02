@@ -9,7 +9,7 @@ exports.up = function(knex) {
         
         table.string('users_cpf').notNullable();
 
-        table.foreign('users_cpf').references('cpf').inTable('users');    
+        table.foreign('users_cpf').references('cpf').inTable('users');   
     });
   };
   

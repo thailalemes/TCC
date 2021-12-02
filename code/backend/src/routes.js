@@ -3,7 +3,6 @@ const express = require('express');
 const UserController = require('./controllers/UserController');
 const UserAdmController = require('./controllers/UserAdmController');
 const ScheduleController = require('./controllers/ScheduleController');
-const ScheduleAdmController = require('./controllers/ScheduleAdmController');
 const ProfileAdmController = require('./controllers/ProfileAdmController');
 const ProfileClientController = require('./controllers/ProfileClientController');
 const SessionController = require('./controllers/SessionController');
