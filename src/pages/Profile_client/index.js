@@ -10,6 +10,7 @@ import logoImg2 from '../../assets/logoWhite.png';
 export default function ProfileClient(){
 
     const [schedule, setSchedule] = useState([]);
+    const [address, setAddress] = useState('');
 
     const history = useHistory();
 
@@ -23,6 +24,16 @@ export default function ProfileClient(){
             }
         }).then(response => {
             setSchedule(response.data);
+        })
+    }, [userCpf]);
+
+    useEffect(() =>  {
+        api.get('profile-client', {
+            headers: {
+                Authorization: userCpf,
+            }
+        }).then(response => {
+            setAddress(response.data.address);
         })
     }, [userCpf]);
 
@@ -50,7 +61,7 @@ export default function ProfileClient(){
         <div className="profile-container">
             <header>
                 <img src={logoImg2} alt="CollectIt" />
-                <span>Bem vindo(a), {userName}</span>
+                <span>Bem vindo(a), {userName}!</span>
 
                 <Link className="button" to="/schedule">
                     Agendar Coleta

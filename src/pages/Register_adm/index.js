@@ -67,11 +67,15 @@ export default function RegisterAdm(){
                     />
 
                     <input placeholder="Telefone" 
+                    type="tel"
                     value={telefone}
                     onChange={e=> setTelefone(e.target.value)}
                     />
                     
-                    <input placeholder="Senha" 
+                    <input 
+                    placeholder="Senha" 
+                    type="password"
+                    minLength={8}
                     value={senha}
                     onChange={e=> setPassword(e.target.value)}
                     />

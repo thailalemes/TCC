@@ -18,7 +18,7 @@ export class Print {
       ];
       const body = this.dadosParaImpressao.map((trash) => {
         return [
-          { text: trash.name, fontSize: 8 },
+          { text: trash.nome, fontSize: 8 },
           { text: trash.date, fontSize: 8 },
           { text: trash.address, fontSize: 8 },
         ];

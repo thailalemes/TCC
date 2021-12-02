@@ -1,28 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import './styles.css';
 import logoImg from '../../assets/logonovo.png';
-import { Print } from './Print';
-import Schedule from '../Schedule';
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import api from '../../services/api';
+import emailjs from 'emailjs-com';
 
 export default function NewReport(){
-    
-    /* this.handleChange = this.handleChange.bind(this); */
-    /* this.handleSubmit = this.handleSubmit.bind(this); */
+    const [title, setTitle] = useState('');
+    const [date, setDate] = useState('');
+    const [schedule, setSchedule] = useState([]);
+    const userCpf = localStorage.getItem('userCpf');
+    const form = useRef();
 
     /* const handleChange = (event) => {
         this.setState({value: event.target.value})
-    }
- */
-    const emitReport = () => {
-        const classeImpressao = new Print(Schedule);
-        const documento = classeImpressao.gerarDocumento();
-        pdfMake.createPdf(documento).open({}, window.open('', '_blank'));
-      }
+    } */
+
+        useEffect(() =>  {
+            api.get('users', {
+                headers: {
+                    Authorization: userCpf,
+                }
+            }).then(response => {
+                setSchedule(response.data);
+            })
+        }, [userCpf]);
+
+        
+        function sendEmail(e) {
+            e.preventDefault();
+
+            emailjs.sendForm('service_hnikp3b', 'template_vh7pzvt', e.target, 'user_C9eFLQNdWBOlmwxDo8WCn')
+            .then((result) => {
+                window.location.reload()
+                console.log('SUCCESS!', result.status, result.text);
+                alert('Relatório enviado com sucesso!');
+            }, (error) => {
+                console.log('FAILED...', error);
+                alert('Falha ao enviar relatório :/')
+            });
+        }
+
+        var curr = new Date();
+        curr.setDate(curr.getDate() + 1);
+        var dates = curr.toISOString().substr(0,10);
 
         return (
         <div className="new-schedule-container">
@@ -38,15 +60,22 @@ export default function NewReport(){
                     </Link>
 
                 </section>
-                <form>
+                <form ref={form} onSubmit={sendEmail}>
                     <p>ATENÇÃO: Para que não haja atrasos junto a coleta, favor emitir o relatório com antescedência.</p>
                         <select id="cbores">
                         <option value=""></option>
-                                 <option value="ent">Entulho</option>
+                        <option  
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}>Entulho</option>
                         </select>
-                        <input id='date' type='date' /* onChange={handleChange} */ placeholder="Escolha uma data" />
+                        <input 
+                        id='date' 
+                        defaultValue={dates}
+                        type='date' 
+                        onChange={e => setDate(e.target.value)} 
+                        placeholder="Escolha uma data" />
 
-                            <button className="button" onClick={emitReport} type="submit">Emitir</button>
+                        <button className="button" type="submit">Emitir</button>
                 </form>
 
             </div>

@@ -31,7 +31,7 @@ export default function RegisterClient(){
         };
         try{
                 const response = await api.post('users', data);
-                alert(`Seu login de acesso: ${response.data}`);
+                alert(`Seu login de acesso: ${response.data.cpf}`);
 
                 history.push('/');
         } catch (err){
@@ -71,6 +71,7 @@ export default function RegisterClient(){
                     />
 
                     <input placeholder="Telefone" 
+                    type="tel"
                     value={telefone}
                     onChange={e=> setTelefone(e.target.value)}
                     />
@@ -85,7 +86,10 @@ export default function RegisterClient(){
                     onChange={e=> setUF(e.target.value)}
                     />
                     
-                    <input placeholder="Senha" 
+                    <input 
+                    placeholder="Senha" 
+                    type="password"
+                    minLength={8}
                     value={senha}
                     onChange={e=> setPassword(e.target.value)}
                     />

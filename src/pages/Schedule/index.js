@@ -34,9 +34,8 @@ export default function Schedule(){
         }
     }
 
-
-return (
-<div className="new-schedule-container">
+        return (
+        <div className="new-schedule-container">
             <div className="content">
                 <section>
                 <img src={logoImg} alt="Collect It" />
@@ -60,7 +59,7 @@ return (
                         </option>
                         </select>
                         <input id='date' 
-                        type='date'   
+                        type='date'
                         value={date}
                         onChange={e => setDate(e.target.value)}
                         placeholder="Escolha uma data" />
