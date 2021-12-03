@@ -18,7 +18,7 @@ export default function NewReport(){
     /* const handleChange = (event) => {
         this.setState({value: event.target.value})
     } */
-
+    // está chamando os dados do cliente após a renderização
         useEffect(() =>  {
             api.get('users', {
                 headers: {
@@ -29,21 +29,25 @@ export default function NewReport(){
             })
         }, [userCpf]);
 
+        // função para envio de e-mail após clicar em emitir
         function sendEmail(e) {
+            // evita o comportamento padrão do componente de atualizar a página
             e.preventDefault();
 
             emailjs.sendForm('service_hnikp3b', 'template_vh7pzvt', e.target, 'user_C9eFLQNdWBOlmwxDo8WCn')
             .then((result) => {
                 window.location.reload()
+                // envia um console.log o sucesso e o resultado
                 console.log('SUCCESS!', result.data);
                 alert('Relatório enviado com sucesso!');
             }, (error) => {
+                // envia um console.log o erro e o resultado
                 console.log('FAILED...', error);
                 alert('Falha ao enviar relatório :/')
             });
         }
 
-        async function getData(e) {
+        /* async function getData(e) {
             e.preventDefault();
 
             await api.get('users')
@@ -51,7 +55,7 @@ export default function NewReport(){
             {schedule.map(users => (
                 users.data
             ))}
-        }
+        } */
 
         var curr = new Date();
         curr.setDate(curr.getDate() + 1);

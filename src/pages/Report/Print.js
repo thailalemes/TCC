@@ -1,5 +1,5 @@
 export class Print {
-
+  // prepara um pdf com os dados enviados
     constructor(dadosParaImpressao) {
       this.dadosParaImpressao = dadosParaImpressao;
     }  

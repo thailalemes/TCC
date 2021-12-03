@@ -8,15 +8,16 @@ import 'leaflet/dist/leaflet.css'
 import logoImg2 from '../../assets/logoWhite.png';
 
 export default function ProfileClient(){
-
+    // useState é o hooks utilizado para declarar uma variável de estado.
     const [schedule, setSchedule] = useState([]);
     const [address, setAddress] = useState('');
 
     const history = useHistory();
-
+    // pega os dados do cpf no localstorage
     const userCpf = localStorage.getItem('userCpf');
     const userName = localStorage.getItem('userName');
 
+    // está chamando os dados do cliente após a renderização
     useEffect(() =>  {
         api.get('profile-client', {
             headers: {
@@ -26,7 +27,7 @@ export default function ProfileClient(){
             setSchedule(response.data);
         })
     }, [userCpf]);
-
+    // função para deletar um agendamento através do id
     async function handleDeleteSchedule(id) {
         try{
             await api.delete(`schedule/${id}`, {
@@ -40,7 +41,8 @@ export default function ProfileClient(){
             alert ('Erro ao deletar agendamento, tente novamente.')
         }
     }
-
+     // faz logout da sessão, limpa os dados do localstorage e envia o usuário
+    // de volta para tela de welcome
     async function handleLogout(){
         localStorage.clear();
 
