@@ -13,10 +13,11 @@ export default function Logon_Admin(){
     const [cpf, setCpf] = useState('');
     const [password, setPassword] = useState('');
     const history = useHistory();
-
+    // função para submeter o usuário ao sucesso ou falha no login
     async function handleLogin(e){
         e.preventDefault();
-
+    // chama a api sessions se o login e senha estiveverem okay, envia para a tela de perfil
+    // se não mostra mensagem falha no login
         try{
             const response = await api.post('sessions', { cpf, password });
 
@@ -28,12 +29,11 @@ export default function Logon_Admin(){
             alert('Falha no login, tente novamente.');
         }
     }
-
+    // retorna a tela do adm
     return(
         <div className="logon-container">
         <section className="form">
             <div className="logoImg">
-
             <img src={logoImg} alt="Collect It" />
             </div>
             <form onSubmit={handleLogin}>

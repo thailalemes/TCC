@@ -8,13 +8,15 @@ import { GoogleMap, LoadScript, Marker, Polyline, StreetViewPanorama } from '@re
 import logoImg2 from '../../assets/logoWhite.png';
 
 export default function ProfileAdm(){
-
+    // useState é o hooks utilizado para declarar uma variável de estado.
     const [schedule, setSchedule] = useState([]);
 
     const history = useHistory();
-
+    // pega os dados do cpf no localstorage
     const userCpf = localStorage.getItem('userCpf');
     const userName = localStorage.getItem('userName');
+
+    // define o tamanho do mapa na tela
     const containerStyle = {
         width: '1130px',
         height: '850px'
@@ -84,22 +86,26 @@ export default function ProfileAdm(){
             }
           },
         ];
-
+      // chamada do pin no mapa
       const onLoad = marker => {
         console.log('marker: ', marker)
       }
-
+      // chamada do polyline no mapa
       const onLoad2 = polyline => {
         console.log('polyline: ', polyline)
       };
 
       const path = [
         { lat: -22.352857354822536, 
-          lng: -47.33924108864638,},
+          lng: -47.33924108864638,
+        },
         { lat: -22.363808369637848,
-          lng: -47.38295593097408},
-        {lat: -22.364155635115807, 
-          lng: -47.38429703548031},
+          lng: -47.38295593097408
+        },
+        {
+          lat: -22.364155635115807, 
+          lng: -47.38429703548031
+        },
         { lat: -22.36660208552721, 
           lng: -47.391157994892254
         },
@@ -163,7 +169,7 @@ export default function ProfileAdm(){
         const lng = e.latLng.lng();
         setCurrentPosition({ lat, lng})
       };
-
+    // está chamando os dados do cliente após a renderização
     useEffect(() =>  {
         api.get('users', {
             headers: {
@@ -171,21 +177,21 @@ export default function ProfileAdm(){
             }
         }).then(response => {
             setSchedule(response.data);
-            console.log(response.data)
-            console.log(response.data)
         })
-    }, [userCpf]);
+    }, [userCpf]);  
 
+    // está chamando a posição atual na geolocalização após a renderização
     useEffect(() => {
       navigator.geolocation.getCurrentPosition(success);
     })
-
+  // faz logout da sessão, limpa os dados do localstorage e envia o usuário
+  // de volta para tela de welcome
     async function handleLogout(){
         localStorage.clear();
 
         history.push('/');
     }
-
+  // retorna a tela de perfil do adm com o mapa e suas localizações
     return(
         <div className="profile-container">
             <header>
@@ -219,22 +225,22 @@ export default function ProfileAdm(){
                           null
                         }
                         {
-                      positions.map(item => {
-                      return (
-                        <Marker
-                          key={item.name}
-                          onLoad={onLoad}
-                          position={item.location}
-                          onClick={() => onSelect(item)}
+                        positions.map(item => {
+                        return (
+                          <Marker
+                            key={item.name}
+                            onLoad={onLoad}
+                            position={item.location}
+                            onClick={() => onSelect(item)}
+                            />
+                            )
+                            })
+                            }
+                          <Polyline
+                            onLoad={onLoad2}
+                            path={path}
+                            options={options}
                           />
-                      )
-                      })
-                      }
-                     <Polyline
-                      onLoad={onLoad2}
-                      path={path}
-                      options={options}
-                    />
 
                     </GoogleMap>
                 </LoadScript>

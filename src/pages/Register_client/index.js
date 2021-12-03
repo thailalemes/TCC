@@ -16,7 +16,7 @@ export default function RegisterClient(){
     const [senha, setPassword] = useState('');
 
     const history = useHistory();
-
+    // função para pegar os dados do usuário no cadastro
     async function handleRegister(e){
         e.preventDefault();
 
@@ -29,6 +29,7 @@ export default function RegisterClient(){
             UF,
             senha,
         };
+        // chama a api de users-adm e envia os dados cadastrados, o login é o cpf criptografado
         try{
                 const response = await api.post('users', data);
                 alert(`Seu login de acesso: ${response.data.cpf}`);
