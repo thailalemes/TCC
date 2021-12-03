@@ -22,6 +22,7 @@ export default function Logon_Client(){
 
                 localStorage.setItem('userCpf', cpf);
                 localStorage.setItem('userName', response.data.name);
+                localStorage.setItem('userData', response);
 
                 history.push('/profile-client');
             } catch (err){

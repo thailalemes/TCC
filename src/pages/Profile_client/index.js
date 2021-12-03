@@ -27,16 +27,6 @@ export default function ProfileClient(){
         })
     }, [userCpf]);
 
-    useEffect(() =>  {
-        api.get('profile-client', {
-            headers: {
-                Authorization: userCpf,
-            }
-        }).then(response => {
-            setAddress(response.data.address);
-        })
-    }, [userCpf]);
-
     async function handleDeleteSchedule(id) {
         try{
             await api.delete(`schedule/${id}`, {

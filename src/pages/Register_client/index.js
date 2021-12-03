@@ -62,6 +62,8 @@ export default function RegisterClient(){
 
                     <input placeholder="CPF" 
                     value={cpf}
+                    minLength={11}
+                    maxLength={11}
                     onChange={e=> setCpf(e.target.value)}
                     />
 

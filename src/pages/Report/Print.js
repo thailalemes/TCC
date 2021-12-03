@@ -12,8 +12,8 @@ export class Print {
   
     CriaCorpoDocumento() {
       const header = [
-        { text: 'Tipo de resíduo', bold: true, fontSize: 9, margin: [0, 4, 0, 0] },
-        { text: 'Data', bold: true, fontSize: 9, margin: [0, 4, 0, 0] },
+        { text: 'Usuário', bold: true, fontSize: 9, margin: [0, 4, 0, 0] },
+        { text: 'Tipo de Resíduo', bold: true, fontSize: 9, margin: [0, 4, 0, 0] },
         { text: 'Endereço', bold: true, fontSize: 9, margin: [0, 4, 0, 0] },
       ];
       const body = this.dadosParaImpressao.map((trash) => {

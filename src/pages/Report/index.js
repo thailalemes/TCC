@@ -10,7 +10,9 @@ export default function NewReport(){
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
     const [schedule, setSchedule] = useState([]);
+    const [data, setData] = useState([]);
     const userCpf = localStorage.getItem('userCpf');
+    const userData = localStorage.getItem('userData');
     const form = useRef();
 
     /* const handleChange = (event) => {
@@ -21,25 +23,34 @@ export default function NewReport(){
             api.get('users', {
                 headers: {
                     Authorization: userCpf,
-                }
+                },
             }).then(response => {
                 setSchedule(response.data);
             })
         }, [userCpf]);
 
-        
         function sendEmail(e) {
             e.preventDefault();
 
             emailjs.sendForm('service_hnikp3b', 'template_vh7pzvt', e.target, 'user_C9eFLQNdWBOlmwxDo8WCn')
             .then((result) => {
                 window.location.reload()
-                console.log('SUCCESS!', result.status, result.text);
+                console.log('SUCCESS!', result.data);
                 alert('Relatório enviado com sucesso!');
             }, (error) => {
                 console.log('FAILED...', error);
                 alert('Falha ao enviar relatório :/')
             });
+        }
+
+        async function getData(e) {
+            e.preventDefault();
+
+            await api.get('users')
+            // eslint-disable-next-line no-lone-blocks
+            {schedule.map(users => (
+                users.data
+            ))}
         }
 
         var curr = new Date();
@@ -75,7 +86,7 @@ export default function NewReport(){
                         onChange={e => setDate(e.target.value)} 
                         placeholder="Escolha uma data" />
 
-                        <button className="button" type="submit">Emitir</button>
+                        <button className="button" value={data} type="submit">Emitir</button>
                 </form>
 
             </div>
